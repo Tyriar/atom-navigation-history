@@ -2,7 +2,7 @@
   "name": "navigation-history",
   "version": "0.1.1",
   "main": "./lib/main",
-  "description": "",
+  "description": "Navigate cursor history across multiple files.",
   "license": "MIT",
   "repository": "https://github.com/Tyriar/navigation-history",
   "engines": {
