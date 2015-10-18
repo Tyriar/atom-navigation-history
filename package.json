@@ -1,0 +1,17 @@
+{
+  "name": "jump-back-forward",
+  "version": "0.1.0",
+  "main": "./lib/main",
+  "description": "",
+  "license": "MIT",
+  "repository": "https://github.com/Tyriar/jump-back-forward",
+  "engines": {
+    "atom": "*"
+  },
+  "dependencies": {
+    "event-kit": "^1.0.0"
+  },
+  "devDependencies": {
+    "coffeelint": "^1.9.7"
+  }
+}
