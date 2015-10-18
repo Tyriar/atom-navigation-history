@@ -23,7 +23,7 @@ class CursorHistoryManager
       if @shouldNavigationBeIgnored(@ignoredNavigation.position, position)
         @ignoredNavigation = {pane, editor, position}
         return
-    else if @shouldNavigationBeIgnored(@currentNavigation.position, position)
+    else if @currentNavigation? and @shouldNavigationBeIgnored(@currentNavigation.position, position)
       @ignoredNavigation = {pane, editor, position}
       return
     @ignoredNavigation = null
@@ -50,3 +50,4 @@ class CursorHistoryManager
   shouldNavigationBeIgnored: (oldPosition, newPosition) ->
     rowDifference = Math.abs(oldPosition.row - newPosition.row)
     rowDifference <= 1
+
