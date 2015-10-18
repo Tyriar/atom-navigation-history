@@ -1,10 +1,10 @@
 {
-  "name": "jump-back-forward",
+  "name": "navigation-history",
   "version": "0.1.0",
   "main": "./lib/main",
   "description": "",
   "license": "MIT",
-  "repository": "https://github.com/Tyriar/jump-back-forward",
+  "repository": "https://github.com/Tyriar/navigation-history",
   "engines": {
     "atom": "*"
   },
