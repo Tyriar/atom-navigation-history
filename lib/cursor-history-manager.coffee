@@ -47,7 +47,8 @@ class CursorHistoryManager
     @currentNavigation = @backHistory.pop()
     @currentNavigation
 
+  getCurrentNavigation: -> @currentNavigation
+
   shouldNavigationBeIgnored: (oldPosition, newPosition) ->
     rowDifference = Math.abs(oldPosition.row - newPosition.row)
     rowDifference <= 1
-
