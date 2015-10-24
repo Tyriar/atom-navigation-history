@@ -7,14 +7,13 @@ module.exports =
     @disposables = new CompositeDisposable
 
     @cursorHistoryManager = new CursorHistoryManager()
-    cursorHistoryManager = @cursorHistoryManager
 
     @disposables.add atom.commands.add 'atom-text-editor',
       'navigation-history:back': => @jumpBack()
       'navigation-history:forward': => @jumpForward()
 
-    atom.workspace.observeTextEditors (textEditor) ->
-      cursorWatcher = new CursorWatcher(textEditor, cursorHistoryManager)
+    atom.workspace.observeTextEditors (textEditor) =>
+      cursorWatcher = new CursorWatcher(textEditor, @cursorHistoryManager)
 
   deactivate: ->
     @disposables.dispose()
@@ -34,6 +33,6 @@ module.exports =
 
     if navigation.editor isnt navigation.pane.getActiveEditor()
       navigation.pane.activateItem(navigation.editor)
-
+    console.log navigation.position
     navigation.editor.setCursorBufferPosition(navigation.position, autoscroll: false)
     navigation.editor.scrollToCursorPosition(center: true)
