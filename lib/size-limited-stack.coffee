@@ -17,9 +17,9 @@ class SizeLimitedStack
 
   setMaxSize: (maxSize) ->
     if typeof maxSize isnt 'number'
-      throw 'Max size must be a number'
+      throw new Error('Max size must be a number')
     if maxSize < 1
-      throw 'Max size must be at least 1'
+      throw new Error('Max size must be at least 1')
     @maxSize = maxSize
     @evictIfNecessary()
 

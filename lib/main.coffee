@@ -12,8 +12,7 @@ module.exports =
   activate: ->
     @disposables = new CompositeDisposable
 
-    @cursorHistoryManager = new CursorHistoryManager(
-        atom.config.get('navigation-history.maxNavigationsToRemember'))
+    @cursorHistoryManager = new CursorHistoryManager(atom.config.get('navigation-history.maxNavigationsToRemember'))
 
     @disposables.add atom.commands.add 'atom-text-editor',
       'navigation-history:back': => @jumpBack()

@@ -18,8 +18,7 @@ class CursorHistoryManager
 
     @disposables = new CompositeDisposable
     @disposables.add atom.config.onDidChange 'navigation-history.maxNavigationsToRemember', =>
-      @setMaxNavigationsToRemember(
-          atom.config.get('navigation-history.maxNavigationsToRemember'))
+      @setMaxNavigationsToRemember(atom.config.get('navigation-history.maxNavigationsToRemember'))
 
   deactivate: ->
     @disposables.dispose()
