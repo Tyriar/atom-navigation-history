@@ -1,8 +1,12 @@
+SizeLimitedStack = require './size-limited-stack'
+{CompositeDisposable} = require 'event-kit'
+
 module.exports =
 class CursorHistoryManager
   constructor: ->
-    @history = []
-    @backHistory = []
+    maxNavigationsToRemember = atom.config.get('navigation-history.maxNavigationsToRemember')
+    @history = new SizeLimitedStack(maxNavigationsToRemember)
+    @backHistory = new SizeLimitedStack(maxNavigationsToRemember)
     @ignoredNavigation = null
 
     pane = atom.workspace.getActivePane()
@@ -11,6 +15,14 @@ class CursorHistoryManager
 
     if position?
       @currentNavigation = {pane, editor, position}
+
+    @disposables = new CompositeDisposable
+    @disposables.add atom.config.onDidChange 'navigation-history.maxNavigationsToRemember', =>
+      @setMaxNavigationsToRemember(
+          atom.config.get('navigation-history.maxNavigationsToRemember'))
+
+  deactivate: ->
+    @disposables.dispose()
 
   pushNewNavigation: (pane, editor, position) ->
     # Don't record navigations triggered from this package
@@ -52,3 +64,7 @@ class CursorHistoryManager
   shouldNavigationBeIgnored: (oldPosition, newPosition) ->
     rowDifference = Math.abs(oldPosition.row - newPosition.row)
     rowDifference <= 1
+
+  setMaxNavigationsToRemember: (maxNavigations) ->
+    @history.setMaxSize(maxNavigations)
+    @backHistory.setMaxSize(maxNavigations)

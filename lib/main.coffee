@@ -3,10 +3,17 @@ CursorHistoryManager = require './cursor-history-manager'
 CursorWatcher = require './cursor-watcher'
 
 module.exports =
+  config:
+    maxNavigationsToRemember:
+      type: 'integer'
+      default: 30
+      description: 'The maximum number of navigations to remember.'
+
   activate: ->
     @disposables = new CompositeDisposable
 
-    @cursorHistoryManager = new CursorHistoryManager()
+    @cursorHistoryManager = new CursorHistoryManager(
+        atom.config.get('navigation-history.maxNavigationsToRemember'))
 
     @disposables.add atom.commands.add 'atom-text-editor',
       'navigation-history:back': => @jumpBack()
@@ -16,6 +23,7 @@ module.exports =
       cursorWatcher = new CursorWatcher(textEditor, @cursorHistoryManager)
 
   deactivate: ->
+    @cursorHistoryManager.deactivate()
     @disposables.dispose()
 
   jumpBack: ->
@@ -33,6 +41,6 @@ module.exports =
 
     if navigation.editor isnt navigation.pane.getActiveEditor()
       navigation.pane.activateItem(navigation.editor)
-    console.log navigation.position
+
     navigation.editor.setCursorBufferPosition(navigation.position, autoscroll: false)
     navigation.editor.scrollToCursorPosition(center: true)
