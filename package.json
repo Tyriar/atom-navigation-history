@@ -2,9 +2,15 @@
   "name": "navigation-history",
   "version": "0.1.4",
   "main": "./lib/main",
-  "description": "Navigate cursor history across multiple files.",
+  "description": "Navigate cursor history across multiple files, similar to jump back and jump forward in Sublime Text.",
   "license": "MIT",
   "repository": "https://github.com/Tyriar/navigation-history",
+  "keywords": [
+    "history",
+    "navigation",
+    "productivity",
+    "shortcut"
+  ],
   "engines": {
     "atom": "*"
   },

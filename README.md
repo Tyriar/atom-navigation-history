@@ -1,6 +1,6 @@
 # navigation-history [![Build Status](https://travis-ci.org/Tyriar/navigation-history.svg?branch=master)](https://travis-ci.org/Tyriar/navigation-history)
 
-An [Atom Editor](http://atom.io) package that allows navigating cursor history across multiple files.
+An [Atom Editor](http://atom.io) package that allows navigating cursor history across multiple files, similar to jump back and jump forward in Sublime Text.
 
 Press <kbd>alt</kbd>+<kbd>-</kbd> to navigate back or <kbd>alt</kbd>+<kbd>shift</kbd>+<kbd>-</kbd> to navigate forward.
 
