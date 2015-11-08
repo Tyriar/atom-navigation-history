@@ -1,10 +1,9 @@
-SizeLimitedStack = require './size-limited-stack'
+SizeLimitedStack = require 'size-limited-stack'
 {CompositeDisposable} = require 'event-kit'
 
 module.exports =
 class CursorHistoryManager
-  constructor: ->
-    maxNavigationsToRemember = atom.config.get('navigation-history.maxNavigationsToRemember')
+  constructor: (maxNavigationsToRemember) ->
     @history = new SizeLimitedStack(maxNavigationsToRemember)
     @backHistory = new SizeLimitedStack(maxNavigationsToRemember)
     @ignoredNavigation = null

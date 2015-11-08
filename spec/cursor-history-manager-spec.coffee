@@ -10,7 +10,7 @@ describe "CursorHistoryManager", ->
       getActiveEditor: ->
         getLastCursor: ->
           getBufferPosition: -> 'test'
-    manager = new CursorHistoryManager()
+    manager = new CursorHistoryManager(30)
     initialNavigation = manager.getCurrentNavigation()
 
     waitsForPromise ->

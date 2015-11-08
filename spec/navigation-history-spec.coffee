@@ -7,13 +7,15 @@ describe "navigation-history", ->
     originalMainJumpTo = main.jumpTo
     waitsForPromise ->
       atom.workspace.open()
+    # Manually activate the package in order to spy on main's functions
+    atom.config.set('navigation-history.maxNavigationsToRemember', 30)
+    main.activate()
 
   afterEach ->
     main.jumpTo = originalMainJumpTo
 
   describe "navigation-history:back", ->
     it "should fire CursorHistoryManager.popBackNavigation", ->
-      main.activate()
       cursorHistoryManager = main.cursorHistoryManager
       cursorHistoryManager.popBackNavigation = jasmine.createSpy('pop-back-navigation')
 
@@ -25,7 +27,6 @@ describe "navigation-history", ->
         expect(cursorHistoryManager.popBackNavigation).toHaveBeenCalled()
 
     it "should fire jumpTo with popped navigation as argument", ->
-      main.activate()
       cursorHistoryManager = main.cursorHistoryManager
       cursorHistoryManager.popBackNavigation = -> 'back-navigation'
       main.jumpTo = jasmine.createSpy('jump-to')
@@ -39,7 +40,6 @@ describe "navigation-history", ->
 
   describe "navigation-history:forward", ->
     it "should fire CursorHistoryManager.popForwardNavigation", ->
-      main.activate()
       cursorHistoryManager = main.cursorHistoryManager
       cursorHistoryManager.popForwardNavigation = jasmine.createSpy('pop-forward-navigation')
 
@@ -51,7 +51,6 @@ describe "navigation-history", ->
         expect(cursorHistoryManager.popForwardNavigation).toHaveBeenCalled()
 
     it "should fire jumpTo with popped navigation as argument", ->
-      main.activate()
       cursorHistoryManager = main.cursorHistoryManager
       cursorHistoryManager.popForwardNavigation = -> 'forward-navigation'
       main.jumpTo = jasmine.createSpy('jump-to')
@@ -66,7 +65,6 @@ describe "navigation-history", ->
   describe "jumpTo", ->
     describe "when a valid navigation is provided", ->
       it "activates the navigation pane, editor and moves the cursor", ->
-        main.activate()
         paneActivateSpy = jasmine.createSpy('pane-activate')
         editorActivateSpy = jasmine.createSpy('editor-activate')
         changeCursorSpy = jasmine.createSpy('change-cursor')

@@ -15,7 +15,8 @@
     "atom": "*"
   },
   "dependencies": {
-    "event-kit": "^1.0.0"
+    "event-kit": "^1.0.0",
+    "size-limited-stack": "^0.1.0"
   },
   "devDependencies": {
     "coffeelint": "^1.9.7"
