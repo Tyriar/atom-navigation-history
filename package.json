@@ -1,6 +1,6 @@
 {
   "name": "navigation-history",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "./lib/main",
   "description": "Navigate cursor history across multiple files, similar to jump back and jump forward in Sublime Text.",
   "license": "MIT",
